@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ArtMin.Application.ViewModels.MarcacaoViewModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Marcação de Pontos</h2>
+
+<p>
+    @Html.ActionLink("Nova Marcação", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Gol)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assistencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vitoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PenaltiDefendido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PenaltiPerdido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GolContra)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assistencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vitoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltiDefendido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PenaltiPerdido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GolContra)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.MarcacaoId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.MarcacaoId }) |
+                @Html.ActionLink("Remover", "Delete", new { id = item.MarcacaoId })
+            </td>
+        </tr>
+    }
+</table>

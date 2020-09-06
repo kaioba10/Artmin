@@ -1,0 +1,50 @@
+﻿@model ArtMin.Application.ViewModels.JogadorViewModel
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhes</h2>
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Goleiro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Admin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Goleiro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Admin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Ativo)
+        </td>
+    </tr>
+
+</table>
+
+<div>
+    @Html.ActionLink("Voltar", "Index")
+</div>

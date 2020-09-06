@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Nova Marcação</h2>
+
+@*@using (Html.BeginForm("Create", "Marcacao", FormMethod.Post))
+    {
+        //SelectList((IEnumerable)dict, "Key", "Value", selectedValue);
+        @Html.DropDownListFor(model => model.JogadorId, new SelectList(Model.JogadoresSelecionaveis.ToList(), "Key", "Value", "Selecione"))
+    }*@
+
+<select id="JogadorId" name="JogadorId">
+</select>
+
+@Scripts.Render("~/bundles/Marcacao/Create")
