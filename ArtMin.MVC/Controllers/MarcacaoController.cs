@@ -35,12 +35,11 @@ namespace ArtMin.MVC.Controllers
 
         // POST: Marcacao/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MarcacaoViewModel marcacaoViewModel)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                _marcacaoAppService.Create(marcacaoViewModel);
                 return RedirectToAction("Index");
             }
             catch
