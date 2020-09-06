@@ -30,8 +30,7 @@ namespace ArtMin.MVC.Controllers
         // GET: Marcacao/Create
         public ActionResult Create()
         {
-            var retornoJogador = _marcacaoAppService.GetAllJogador();
-            return View(retornoJogador);
+            return View();
         }
 
         // POST: Marcacao/Create
