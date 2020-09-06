@@ -1,4 +1,5 @@
-﻿using System.Web.Optimization;
+﻿using System.Collections.Generic;
+using System.Web.Optimization;
 
 namespace ArtMin.MVC
 {
@@ -12,6 +13,9 @@ namespace ArtMin.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/unobtrusive")
+                .Include("~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             // Use a versão em desenvolvimento do Modernizr para desenvolver e aprender. Em seguida, quando estiver
             // pronto para a produção, utilize a ferramenta de build em https://modernizr.com para escolher somente os testes que precisa.
@@ -32,6 +36,14 @@ namespace ArtMin.MVC
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/toastr").Include("~/Content/toastr.css"));
+        }
+    }
+
+    public class AsIsBundleOrderer : IBundleOrderer
+    {
+        public IEnumerable<BundleFile> OrderFiles(BundleContext context, IEnumerable<BundleFile> files)
+        {
+            return files;
         }
     }
 }

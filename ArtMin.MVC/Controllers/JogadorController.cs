@@ -1,6 +1,5 @@
 ﻿using ArtMin.Application.Interfaces;
 using ArtMin.Application.ViewModels;
-using Microsoft.Ajax.Utilities;
 using System;
 using System.Web.Mvc;
 

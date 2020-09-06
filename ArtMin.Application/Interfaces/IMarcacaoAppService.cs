@@ -10,6 +10,5 @@ namespace ArtMin.Application.Interfaces
         MarcacaoViewModel GetById(int id);
         void Edit(MarcacaoViewModel jogadorViewModel);
         void Delete(int id);
-        IEnumerable<JogadorViewModel> GetAllJogador();
     }
 }

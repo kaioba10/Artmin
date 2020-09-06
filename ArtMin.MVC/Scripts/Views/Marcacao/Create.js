@@ -1,13 +1,14 @@
 ﻿$(document).ready(function () {
     $.ajax({
-        type: "GET", url: "https://localhost:44363/Jogador/GetAll", dataType: "json", contentType: "application/json",
+        type: "GET",
+        url: window.caminhoWebSite + "Jogador/GetAll",
+        dataType: "json",
+        contentType: "application/json",
         success: function (res) {
-            console.log(res);
             $.each(res, function (data, value) {
 
                 $("#JogadorId").append($("<option></option>").val(value.JogadorId).html(value.Nome));
             })
         }
-
     });
 })

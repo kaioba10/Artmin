@@ -1,16 +1,79 @@
-﻿@{
+﻿@model ArtMin.Application.ViewModels.MarcacaoViewModel
+@{
     ViewBag.Title = "Create";
 }
 
 <h2>Nova Marcação</h2>
 
-@*@using (Html.BeginForm("Create", "Marcacao", FormMethod.Post))
-    {
-        //SelectList((IEnumerable)dict, "Key", "Value", selectedValue);
-        @Html.DropDownListFor(model => model.JogadorId, new SelectList(Model.JogadoresSelecionaveis.ToList(), "Key", "Value", "Selecione"))
-    }*@
+@using (Html.BeginForm("Create", "Marcacao", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 
-<select id="JogadorId" name="JogadorId">
-</select>
+<div class="form-horizontal" id="all">
+
+    <select id="JogadorId" name="JogadorId">
+    </select>
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gol, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Gol, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.Gol, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Assistencia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Assistencia, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.Assistencia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Vitoria, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Vitoria, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.Vitoria, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PenaltiDefendido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PenaltiDefendido, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.PenaltiDefendido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PenaltiPerdido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PenaltiPerdido, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.PenaltiPerdido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.GolContra, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GolContra, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0" } })
+            @Html.ValidationMessageFor(model => model.GolContra, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cadastrar" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+    <div>
+        @Html.ActionLink("Voltar", "Index")
+    </div>
+
+}
 
 @Scripts.Render("~/bundles/Marcacao/Create")

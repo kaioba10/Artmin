@@ -51,13 +51,5 @@ namespace ArtMin.Application.Services
             var marcacao = _marcacaoRepository.GetById(id);
             _marcacaoRepository.Remove(marcacao);
         }
-
-        public IEnumerable<JogadorViewModel> GetAllJogador()
-        {
-            var jogador = _jogadorRepository.GetAll();
-            var jogadorViewModel = Mapper.Map<IEnumerable<Jogador>, IEnumerable<JogadorViewModel> >(jogador);
-
-            return jogadorViewModel;
-        }
     }
 }
