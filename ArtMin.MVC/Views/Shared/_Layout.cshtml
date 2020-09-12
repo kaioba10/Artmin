@@ -7,11 +7,15 @@
     <title>@ViewBag.Title - ArtMin</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/toastr")
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">

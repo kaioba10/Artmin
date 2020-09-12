@@ -188,6 +188,7 @@
     <Content Include="Scripts\Util\util.toastr.js" />
     <Content Include="Scripts\Views\Jogador\Jogador.js" />
     <Content Include="Scripts\Views\Marcacao\Create.js" />
+    <Content Include="Scripts\Views\Marcacao\Index.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
