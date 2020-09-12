@@ -1,10 +1,13 @@
-﻿namespace ArtMin.Domain.Entities
+﻿using System;
+
+namespace ArtMin.Domain.Entities
 {
     public class Jogador
     {
         public int JogadorId { get; private set; }
         public string Nome { get; private set; }
         public string Email { get; private set; }
+        public string Cpf { get; set; }
         public bool Goleiro { get; private set; }
         public bool Admin { get; private set; }
         public bool Ativo { get; private set; }

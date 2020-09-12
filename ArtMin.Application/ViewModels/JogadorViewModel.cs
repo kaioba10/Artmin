@@ -20,6 +20,11 @@ namespace ArtMin.Application.ViewModels
         [DisplayName("E-Mail")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "CPF obrigatório")]
+        [MaxLength(11, ErrorMessage = "Número de caracteres inválido.")]
+        [MinLength(11, ErrorMessage = "Número de caracteres inválido.")]
+        public string Cpf { get; set; }
+
 
         [DisplayName("Goleiro?")]
         public bool Goleiro { get; set; }
