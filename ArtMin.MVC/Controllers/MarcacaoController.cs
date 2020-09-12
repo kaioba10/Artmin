@@ -19,7 +19,11 @@ namespace ArtMin.MVC.Controllers
         }
 
         // GET: Marcacao
-        public ActionResult Index() => View(_marcacaoAppService.GetAll());
+        public ActionResult Index() => View();
+
+        //POST: Marcacao/ObterMarcacoes
+        [HttpPost]
+        public ActionResult ObterMarcacoes() => Json(_marcacaoAppService.GetAll().ToList(), JsonRequestBehavior.AllowGet);
 
         // GET: Marcacao/Details/5
         public ActionResult Details(int id)
