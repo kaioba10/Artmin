@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace ArtMin.Infra.Data.EntityConfig
 {
-    class MarcacaoConfiguration : EntityTypeConfiguration<Marcacao>
+    public class MarcacaoConfiguration : EntityTypeConfiguration<Marcacao>
     {
         public MarcacaoConfiguration()
         {
