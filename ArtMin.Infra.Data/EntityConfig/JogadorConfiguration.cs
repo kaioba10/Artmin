@@ -17,6 +17,10 @@ namespace ArtMin.Infra.Data.EntityConfig
             Property(j => j.Email)
                 .IsRequired()
                 .HasMaxLength(120);
+
+            Property(j => j.Cpf)
+                .IsRequired()
+                .HasMaxLength(11);
         }
     }
 }

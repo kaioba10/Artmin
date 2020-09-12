@@ -54,6 +54,14 @@
     <Compile Include="Context\ArtMinContext.cs" />
     <Compile Include="EntityConfig\JogadorConfiguration.cs" />
     <Compile Include="EntityConfig\MarcacaoConfiguration.cs" />
+    <Compile Include="Migrations\202009121838225_Inclusao de coluna CPF.cs" />
+    <Compile Include="Migrations\202009121838225_Inclusao de coluna CPF.designer.cs">
+      <DependentUpon>202009121838225_Inclusao de coluna CPF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009121841524_Ajust coluna CPF.cs" />
+    <Compile Include="Migrations\202009121841524_Ajust coluna CPF.designer.cs">
+      <DependentUpon>202009121841524_Ajust coluna CPF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\JogadorRepository.cs" />
@@ -66,7 +74,14 @@
       <Name>ArtMin.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009121838225_Inclusao de coluna CPF.resx">
+      <DependentUpon>202009121838225_Inclusao de coluna CPF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009121841524_Ajust coluna CPF.resx">
+      <DependentUpon>202009121841524_Ajust coluna CPF.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
