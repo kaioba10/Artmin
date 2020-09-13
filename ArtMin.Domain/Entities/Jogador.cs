@@ -12,7 +12,6 @@ namespace ArtMin.Domain.Entities
         public bool Admin { get; private set; }
         public bool Ativo { get; private set; }
 
-
         public void Alterar(string nome, string email, bool goleiro, bool admin, bool ativo)
         {
             Nome = nome;

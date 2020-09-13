@@ -3,6 +3,7 @@ using ArtMin.Application.ViewModels;
 using ArtMin.Domain.Entities;
 using ArtMin.Domain.Interfaces.Repositories;
 using AutoMapper;
+using System;
 using System.Collections.Generic;
 
 namespace ArtMin.Application.Services
@@ -26,6 +27,8 @@ namespace ArtMin.Application.Services
         public void Create(JogadorViewModel jogadorViewModel)
         {
             var jogador = Mapper.Map<JogadorViewModel, Jogador>(jogadorViewModel);
+            ComparaCpf(jogador);
+
             _jogadorRepository.Add(jogador);
         }
 
@@ -51,5 +54,21 @@ namespace ArtMin.Application.Services
 
         }
 
+        private bool ComparaCpf(Jogador jogador)
+        {
+            var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
+            var validacaoCpf = _jogadorRepository.GetAll();
+            jogador.ComparaCpf = false;
+
+            foreach (var item in validacaoCpf)
+            {
+                if (cpfLimpo == item.Cpf)
+                {
+                    jogador.ComparaCpf = true;
+                }
+            }
+
+            return jogador.ComparaCpf;
+        }
     }
 }
