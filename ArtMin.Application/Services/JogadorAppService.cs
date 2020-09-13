@@ -27,9 +27,13 @@ namespace ArtMin.Application.Services
         public void Create(JogadorViewModel jogadorViewModel)
         {
             var jogador = Mapper.Map<JogadorViewModel, Jogador>(jogadorViewModel);
-            ComparaCpf(jogador);
+            ComparaCpf(jogadorViewModel);
 
-            _jogadorRepository.Add(jogador);
+            if (jogadorViewModel.ComparaCpf)
+            {
+                throw new ArgumentException("CPF já cadastrado na base de dados.");
+            }
+            _jogadorRepository.Add(jogador);            
         }
 
         public JogadorViewModel GetById(int id)
@@ -54,7 +58,7 @@ namespace ArtMin.Application.Services
 
         }
 
-        private bool ComparaCpf(Jogador jogador)
+        private bool ComparaCpf(JogadorViewModel jogador)
         {
             var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
             var validacaoCpf = _jogadorRepository.GetAll();
