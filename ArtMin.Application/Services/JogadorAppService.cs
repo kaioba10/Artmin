@@ -27,12 +27,11 @@ namespace ArtMin.Application.Services
         public void Create(JogadorViewModel jogadorViewModel)
         {
             var jogador = Mapper.Map<JogadorViewModel, Jogador>(jogadorViewModel);
-            ComparaCpf(jogadorViewModel);
+            var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
+            var validacaoCpf = _jogadorRepository.CompararCpf(cpfLimpo);
 
-            if (jogadorViewModel.ComparaCpf)
-            {
-                throw new ArgumentException("CPF já cadastrado na base de dados.");
-            }
+            //Implementar Validation Contract
+            //https://github.com/andrebaltieri/FluentValidator/wiki/Using-Validation-Contracts
             _jogadorRepository.Add(jogador);            
         }
 
@@ -56,23 +55,6 @@ namespace ArtMin.Application.Services
             var jogador = _jogadorRepository.GetById(id);
             _jogadorRepository.Remove(jogador);
 
-        }
-
-        private bool ComparaCpf(JogadorViewModel jogador)
-        {
-            var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
-            var validacaoCpf = _jogadorRepository.GetAll();
-            jogador.ComparaCpf = false;
-
-            foreach (var item in validacaoCpf)
-            {
-                if (cpfLimpo == item.Cpf)
-                {
-                    jogador.ComparaCpf = true;
-                }
-            }
-
-            return jogador.ComparaCpf;
         }
     }
 }
