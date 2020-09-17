@@ -33,5 +33,7 @@ namespace ArtMin.Application.ViewModels
 
         [DisplayName("Jogador Ativo?")]
         public bool Ativo { get; set; }
+
+        public bool ComparaCpf { get; set; }
     }
 }

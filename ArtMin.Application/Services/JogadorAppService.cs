@@ -3,6 +3,7 @@ using ArtMin.Application.ViewModels;
 using ArtMin.Domain.Entities;
 using ArtMin.Domain.Interfaces.Repositories;
 using AutoMapper;
+using System;
 using System.Collections.Generic;
 
 namespace ArtMin.Application.Services
@@ -26,7 +27,19 @@ namespace ArtMin.Application.Services
         public void Create(JogadorViewModel jogadorViewModel)
         {
             var jogador = Mapper.Map<JogadorViewModel, Jogador>(jogadorViewModel);
-            _jogadorRepository.Add(jogador);
+            var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
+            var validacaoCpf = _jogadorRepository.CompararCpf(cpfLimpo);
+
+            if (validacaoCpf)
+            {
+
+            }
+
+            //Implementar Validation Contract
+            //https://github.com/andrebaltieri/FluentValidator/wiki/Using-Validation-Contracts
+
+            jogador.Cpf = cpfLimpo;
+            _jogadorRepository.Add(jogador);            
         }
 
         public JogadorViewModel GetById(int id)
@@ -50,6 +63,5 @@ namespace ArtMin.Application.Services
             _jogadorRepository.Remove(jogador);
 
         }
-
     }
 }

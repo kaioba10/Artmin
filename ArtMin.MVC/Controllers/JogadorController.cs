@@ -51,6 +51,14 @@ namespace ArtMin.MVC.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult CadastrarJogador(JogadorViewModel jogadorViewModel)
+        {
+            _jogadorAppService.Create(jogadorViewModel);
+
+            return Json(jogadorViewModel, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Jogador/Edit/5
         public ActionResult Edit(int id)
         {
