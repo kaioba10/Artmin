@@ -30,8 +30,15 @@ namespace ArtMin.Application.Services
             var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
             var validacaoCpf = _jogadorRepository.CompararCpf(cpfLimpo);
 
+            if (validacaoCpf)
+            {
+
+            }
+
             //Implementar Validation Contract
             //https://github.com/andrebaltieri/FluentValidator/wiki/Using-Validation-Contracts
+
+            jogador.Cpf = cpfLimpo;
             _jogadorRepository.Add(jogador);            
         }
 

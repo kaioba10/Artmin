@@ -1,7 +1,9 @@
 ﻿using ArtMin.Domain.Entities;
 using ArtMin.Infra.Data.EntityConfig;
+using System;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Validation;
 
 namespace ArtMin.Infra.Data.Context
 {
@@ -11,6 +13,28 @@ namespace ArtMin.Infra.Data.Context
             : base("ArtMin")
         {
 
+        }
+
+        public override int SaveChanges()
+        {
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entidade do tipo \"{0}\" no estado \"{1}\" tem os seguintes erros de validação:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Erro: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
 
         public DbSet<Jogador> jogadores { get; set; }
