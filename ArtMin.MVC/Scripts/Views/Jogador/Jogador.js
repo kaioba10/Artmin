@@ -31,6 +31,8 @@ function SalvarCadastro() {
                 MensagemToastr(tipoToastr.erro, "Erro ao cadastrar o jogador");
                 return;
             }
+
+            $('#ConfimacaoCadastro').modal('toggle')
         }
     });
 }

@@ -22,12 +22,15 @@ namespace ArtMin.MVC
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/util").Include(
+                        "~/Scripts/Util/util.*"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jogador").Include("~/Scripts/Views/Jogador/Jogador"));
 
-            bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.js"));
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Marcacao/Index").Include("~/Scripts//Views/Marcacao/Index.js"));
             bundles.Add(new ScriptBundle("~/bundles/Marcacao/Create").Include("~/Scripts/Views/Marcacao/Create.js"));
