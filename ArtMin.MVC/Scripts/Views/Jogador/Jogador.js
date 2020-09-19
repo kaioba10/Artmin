@@ -32,6 +32,7 @@ function SalvarCadastro() {
                 return;
             }
 
+            $('#formCadastroJogador')[0].reset();
             $('#ConfimacaoCadastro').modal('toggle')
         }
     });
