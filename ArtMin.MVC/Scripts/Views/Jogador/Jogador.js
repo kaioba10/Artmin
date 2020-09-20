@@ -15,16 +15,22 @@ function ConfirmarCadastro() {
 
 function SalvarCadastro() {
 
-    var form = $('#formCadastroJogador').serializeArray();
+    var form = $('#formCadastroJogador');
+
+    if (!form.valid()) {
+        MensagemToastr(tipoToastr.alerta, "Preencha os campos obrigatórios");
+        $('#ConfimacaoCadastro').modal('toggle')
+        return false;
+    }
 
     $.ajax({
         url: caminhoWebSite + "Jogador/CadastrarJogador",
         type: "POST",
-        data: form,
+        data: form.serializeArray(),
         dataType: "json",
-        success: function (result) {
+        success: function (data) {
 
-            if (result) {
+            if (data) {
                 MensagemToastr(tipoToastr.sucesso, "Jogador cadastrado com sucesso");
             }
             else {
