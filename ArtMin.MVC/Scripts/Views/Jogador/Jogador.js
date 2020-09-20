@@ -18,7 +18,7 @@ function SalvarCadastro() {
     var form = $('#formCadastroJogador');
 
     if (!form.valid()) {
-        MensagemToastr(tipoToastr.alerta, "Preencha os campos obrigatórios");
+        MensagemToastr(tipoToastr.alerta, "Preencha corretamente os campos obrigatórios");
         $('#ConfimacaoCadastro').modal('toggle')
         return false;
     }
