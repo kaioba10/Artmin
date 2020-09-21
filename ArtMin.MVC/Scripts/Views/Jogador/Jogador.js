@@ -74,6 +74,17 @@ function ValidarFormularioCreate(){
 
         }, "Informe um CPF válido"),
 
+            $.validator.addMethod(
+                "regex",
+                function (value, element, regexp) {
+                    if (regexp && regexp.constructor != RegExp) {
+                        regexp = new RegExp(regexp);
+                    }
+                    else if (regexp.global) regexp.lastIndex = 0;
+                    
+                    return this.optional(element) || regexp.test(value);
+                }
+            ),
         $("#formCadastroJogador").validate({
             rules: {
                 Nome: {
@@ -84,8 +95,7 @@ function ValidarFormularioCreate(){
                 Email: {
                     required: true,
                     email: true,
-                    maxlength: 120,
-                    minlength: 2
+                    regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
                 },
                 Cpf: {
                     required: true,
