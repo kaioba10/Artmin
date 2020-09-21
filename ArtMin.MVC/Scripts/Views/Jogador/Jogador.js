@@ -3,6 +3,7 @@
     $("input[id*='cpf']").inputmask({
         mask: ['999.999.999-99'],
         keepStatic: true
+        , clearIncomplete: true 
     });
 
     ValidarFormularioCreate();
@@ -59,7 +60,10 @@ function ValidarFormularioCreate(){
                     maxlength: 120,
                     minlength: 2
                 },
-                Cpf: "required"
+                Cpf: {
+                    required: true,
+                    minlength: 11
+                }
             },
             // Mensagens referentes às especificações de regras acima
             messages: {
@@ -70,6 +74,20 @@ function ValidarFormularioCreate(){
                 },
                 Email: "Formato de e-mail inválido.",
                 Cpf: "O campo CPF é obrigatório"
+            },
+
+            //errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback text-danger');
+                element.closest('.form-group>div').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('alert alert-danger');
+                $(element).removeClass('alert alert-success');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).addClass('alert alert-success');
+                $(element).removeClass('alert alert-danger');
             },
 
             submitHandler: function (form) {
