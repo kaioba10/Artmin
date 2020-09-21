@@ -45,6 +45,35 @@ function SalvarCadastro() {
 
 function ValidarFormularioCreate(){
     $(function () {
+
+        jQuery.validator.addMethod("Cpf", function (value, element) {
+            value = jQuery.trim(value);
+
+            value = value.replace('.', '');
+            value = value.replace('.', '');
+            cpf = value.replace('-', '');
+            while (cpf.length < 11) cpf = "0" + cpf;
+            var expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
+            var a = [];
+            var b = new Number;
+            var c = 11;
+            for (i = 0; i < 11; i++) {
+                a[i] = cpf.charAt(i);
+                if (i < 9) b += (a[i] * --c);
+            }
+            if ((x = b % 11) < 2) { a[9] = 0 } else { a[9] = 11 - x }
+            b = 0;
+            c = 11;
+            for (y = 0; y < 10; y++) b += (a[y] * c--);
+            if ((x = b % 11) < 2) { a[10] = 0; } else { a[10] = 11 - x; }
+
+            var retorno = true;
+            if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg)) retorno = false;
+
+            return this.optional(element) || retorno;
+
+        }, "Informe um CPF válido"),
+
         $("#formCadastroJogador").validate({
             rules: {
                 Nome: {
@@ -57,6 +86,10 @@ function ValidarFormularioCreate(){
                     email: true,
                     maxlength: 120,
                     minlength: 2
+                },
+                Cpf: {
+                    required: true,
+                    Cpf: true
                 }
             },
             // Mensagens referentes às especificações de regras acima
@@ -67,6 +100,10 @@ function ValidarFormularioCreate(){
                     minlength: "Permitido no mínimo 2 caracteres"
                 },
                 Email: "Formato de e-mail inválido.",
+                Cpf: {
+                    required: "O campo CPF é obrigatório",
+                    Cpf: 'CPF inválido'
+                }
             },
 
             //errorElement: 'span',
@@ -86,37 +123,7 @@ function ValidarFormularioCreate(){
             submitHandler: function (form) {
                 form.submit();
             }
-        });
+        })
     });
 }
 
-$.validator.addMethod("regx", function (value, element, regexpr) {
-    return regexpr.test(value);
-}, "Número de CPF inválido");
-$("#formCadastroJogador").validate({
-
-    rules: {
-        Cpf: {
-            required: true,
-            //regx: "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\w{6,}$/",
-            minlength: 2,
-            maxlength: 11
-        }
-    },
-    errorPlacement: function (error, element) {
-        error.addClass('invalid-feedback text-danger');
-        element.closest('.form-group>div').append(error);
-    },
-    highlight: function (element, errorClass, validClass) {
-        $(element).addClass('alert alert-danger');
-        $(element).removeClass('alert alert-success');
-    },
-    unhighlight: function (element, errorClass, validClass) {
-        $(element).addClass('alert alert-success');
-        $(element).removeClass('alert alert-danger');
-    },
-
-    submitHandler: function (form) {
-        form.submit();
-    }
-});
