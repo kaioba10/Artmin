@@ -38,9 +38,8 @@ namespace ArtMin.MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/jqueryval.css"));
-
-            bundles.Add(new StyleBundle("~/Content/toastr").Include("~/Content/toastr.css"));
+                      "~/Content/jqueryval.css",
+                      "~/Content/toastr.css"));
         }
     }
 
