@@ -49,26 +49,23 @@ function SalvarCadastro() {
 
 function RemoverCadastro(){
 
-    var form = $('#formCadastroJogador');
+    var jogadorId = $('#JogadorId').val();
 
     $.ajax({
-        url: caminhoWebSite + "Jogador/RemoverJogador",
         type: "POST",
-        data: form,
+        url: caminhoWebSite + "Jogador/RemoverJogador",
+        data: JSON.stringify({ id: jogadorId }),
         dataType: "json",
-        success: function (data) {
-
-            if (data) {
-                MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso");
-            }
-            else {
-                MensagemToastr(tipoToastr.erro, "Erro ao remover o jogador");
-                return;
-            }
-
-            $('#RemoverCadastro').modal('toggle')
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso");
+        },
+        error: function () {
+            MensagemToastr(tipoToastr.erro, "Erro ao remover o jogador");
+            return false;
         }
     });
+
 }
 
 function ValidarFormularioCreate(){
