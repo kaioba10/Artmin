@@ -8,9 +8,13 @@
 
 });
 
+function RemoverCadastro(){
+    $('#RemoverCadastro').modal('show');
+};
+
 function ConfirmarCadastro() {
     $('#ConfimacaoCadastro').modal('show');
-}
+};
 
 function SalvarCadastro() {
 
@@ -39,6 +43,30 @@ function SalvarCadastro() {
 
             $('#formCadastroJogador')[0].reset();
             $('#ConfimacaoCadastro').modal('toggle')
+        }
+    });
+}
+
+function RemoverCadastro(){
+
+    var form = $('#formCadastroJogador');
+
+    $.ajax({
+        url: caminhoWebSite + "Jogador/RemoverJogador",
+        type: "POST",
+        data: form,
+        dataType: "json",
+        success: function (data) {
+
+            if (data) {
+                MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso");
+            }
+            else {
+                MensagemToastr(tipoToastr.erro, "Erro ao remover o jogador");
+                return;
+            }
+
+            $('#RemoverCadastro').modal('toggle')
         }
     });
 }
