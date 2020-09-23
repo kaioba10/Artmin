@@ -33,7 +33,7 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>@Html.HiddenFor(modelItem => item.JogadorId)</td>
+            @Html.HiddenFor(modelItem => item.JogadorId)
 
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
