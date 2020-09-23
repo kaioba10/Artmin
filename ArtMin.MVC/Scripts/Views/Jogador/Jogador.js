@@ -8,8 +8,8 @@
 
 });
 
-function RemoverCadastro(){
-    $('#RemoverCadastro').modal('show');
+function ConfirmacaoRemocao() {
+    $('#ConfirmacaoRemocao').modal('show');
 };
 
 function ConfirmarCadastro() {
@@ -50,7 +50,7 @@ function SalvarCadastro() {
 function RemoverCadastro(){
 
     var jogadorId = $('#item_JogadorId').val();
-
+    
     $.ajax({
         type: "POST",
         url: caminhoWebSite + "Jogador/RemoverJogador",
