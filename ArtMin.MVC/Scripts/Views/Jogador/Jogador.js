@@ -49,7 +49,7 @@ function SalvarCadastro() {
 
 function RemoverCadastro(){
 
-    var jogadorId = $('#JogadorId').val();
+    var jogadorId = $('#item_JogadorId').val();
 
     $.ajax({
         type: "POST",
