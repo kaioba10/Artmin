@@ -103,5 +103,13 @@ namespace ArtMin.MVC.Controllers
                 throw new Exception(e.Message);
             }
         }
+
+        [HttpPost]
+        public ActionResult RemoverJogador(int id)
+        {
+            _jogadorAppService.Delete(id);
+
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }

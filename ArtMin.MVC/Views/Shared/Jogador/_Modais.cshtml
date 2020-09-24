@@ -1,0 +1,42 @@
+﻿<!-- Modal Confirmar-->
+<div class="modal fade" id="ConfimacaoCadastro" tabindex="-1" role="dialog" aria-labelledby="ConfimacaoCadastroLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="ConfimacaoCadastroLabel">Confirmação de Cadastro</h4>
+            </div>
+            <div class="modal-body">
+                Confirmar cadastro do jogador?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-primary"  id="salvarCadastro" onclick="SalvarCadastro()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal Remover-->
+<div class="modal fade" id="ConfirmacaoRemocao" tabindex="-1" role="dialog" aria-labelledby="ConfirmacaoRemocaoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="ConfirmacaoRemocaoLabel">Remoção de Cadastro</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="JogadorId" name="JogadorId" />
+                Deseja realmente remover o cadastro do jogador?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-danger" id="removerCadastro" onclick="RemoverCadastro()">Sim</button>
+            </div>
+        </div>
+    </div>
+</div>

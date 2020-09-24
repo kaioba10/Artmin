@@ -53,7 +53,8 @@ namespace ArtMin.Application.Services
         public void Edit(JogadorViewModel jogadorViewModel)
         {
             var jogador = _jogadorRepository.GetById(jogadorViewModel.JogadorId);
-            jogador.Alterar(jogadorViewModel.Nome, jogadorViewModel.Email, jogadorViewModel.Goleiro, jogadorViewModel.Admin, jogadorViewModel.Ativo);
+            var cpfLimpo = jogadorViewModel.Cpf.Replace(".", "").Replace("-", "");
+            jogador.Alterar(jogadorViewModel.Nome, jogadorViewModel.Email, cpfLimpo, jogadorViewModel.Goleiro, jogadorViewModel.Admin, jogadorViewModel.Ativo);
             _jogadorRepository.Update(jogador);
         }
 

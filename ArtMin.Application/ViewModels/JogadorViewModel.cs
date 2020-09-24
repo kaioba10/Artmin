@@ -27,12 +27,15 @@ namespace ArtMin.Application.ViewModels
 
         [DisplayName("Goleiro?")]
         public bool Goleiro { get; set; }
+        public string GoleiroDescricao { get { return Goleiro ? "Sim" : "Não"; } }
 
         [DisplayName("Administrador?")]
         public bool Admin { get; set; }
+        public string AdminDescricao { get { return Admin ? "Sim" : "Não"; } }
 
         [DisplayName("Jogador Ativo?")]
         public bool Ativo { get; set; }
+        public string AtivoDescricao { get { return Ativo ? "Sim" : "Não"; } }
 
         public bool ComparaCpf { get; set; }
     }

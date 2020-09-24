@@ -214,9 +214,11 @@
     <Content Include="Views\Jogador\Details.cshtml" />
     <Content Include="Views\Marcacao\Index.cshtml" />
     <Content Include="Views\Marcacao\Create.cshtml" />
+    <Content Include="Views\Shared\Jogador\_Modais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

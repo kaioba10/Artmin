@@ -9,6 +9,7 @@
 <p>
     @Html.ActionLink("Novo Cadastro", "Create")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -29,29 +30,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Goleiro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Admin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ativo)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.JogadorId }) |
-            @Html.ActionLink("Detalhes", "Details", new { id=item.JogadorId }) |
-            @Html.ActionLink("Remover", "Delete", new { id=item.JogadorId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Email</td>
+            <td>@item.GoleiroDescricao</td>
+            <td>@item.AdminDescricao</td>
+            <td>@item.AtivoDescricao</td>
+
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.JogadorId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.JogadorId }) |
+
+                <button type="button" class=" btn btn-link" onclick="ConfirmacaoRemocao(@item.JogadorId)">
+                    Remover
+                </button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/Views/Jogador/Jogador.js")
+}
+
+@Html.Partial("../Shared/Jogador/_Modais")
