@@ -8,7 +8,9 @@
 
 });
 
-function ConfirmacaoRemocao() {
+
+function ConfirmacaoRemocao(id) {
+    $('#JogadorId').val(id);
     $('#ConfirmacaoRemocao').modal('show');
 };
 
@@ -42,14 +44,14 @@ function SalvarCadastro() {
             }
 
             $('#formCadastroJogador')[0].reset();
-            $('#ConfimacaoCadastro').modal('toggle')
+            $('#ConfimacaoCadastro').modal('toggle');
         }
     });
 }
 
 function RemoverCadastro(){
 
-    var jogadorId = $('#item_JogadorId').val();
+    var jogadorId = $('#JogadorId').val();
     
     $.ajax({
         type: "POST",
@@ -58,7 +60,7 @@ function RemoverCadastro(){
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function () {
-            MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso");
+            MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso", function () { location.reload(); });
         },
         error: function () {
             MensagemToastr(tipoToastr.erro, "Erro ao remover o jogador");
@@ -66,6 +68,7 @@ function RemoverCadastro(){
         }
     });
 
+    $('#ConfirmacaoRemocao').modal('toggle');
 }
 
 function ValidarFormularioCreate(){

@@ -9,7 +9,7 @@
     }
 };
 
-function MensagemToastr(tipo, mensagem) {
+function MensagemToastr(tipo, mensagem, onHidden) {
     /*  
         Tipos de mensagem:
         - success
@@ -35,12 +35,13 @@ function MensagemToastr(tipo, mensagem) {
         "onclick": null,
         "showDuration": "3000",
         "hideDuration": "1000",
-        "timeOut": "20000",
+        "timeOut": "1200",
         "extendedTimeOut": "4000",
         "showEasing": "swing",
         "hideEasing": "linear",
         "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
+        "hideMethod": "fadeOut",
+        "onHidden": onHidden
     };
 
     toastr[tipo](mensagem);
