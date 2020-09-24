@@ -5,6 +5,7 @@
     });
 
     ValidarFormularioCreate();
+    ValidarFormularioEdit()
 
 });
 
@@ -165,3 +166,96 @@ function ValidarFormularioCreate(){
     });
 }
 
+function ValidarFormularioEdit() {
+    $(function () {
+
+        jQuery.validator.addMethod("Cpf", function (value, element) {
+            value = jQuery.trim(value);
+
+            value = value.replace('.', '');
+            value = value.replace('.', '');
+            cpf = value.replace('-', '');
+            while (cpf.length < 11) cpf = "0" + cpf;
+            var expReg = /^0+$|^1+$|^2+$|^3+$|^4+$|^5+$|^6+$|^7+$|^8+$|^9+$/;
+            var a = [];
+            var b = new Number;
+            var c = 11;
+            for (i = 0; i < 11; i++) {
+                a[i] = cpf.charAt(i);
+                if (i < 9) b += (a[i] * --c);
+            }
+            if ((x = b % 11) < 2) { a[9] = 0 } else { a[9] = 11 - x }
+            b = 0;
+            c = 11;
+            for (y = 0; y < 10; y++) b += (a[y] * c--);
+            if ((x = b % 11) < 2) { a[10] = 0; } else { a[10] = 11 - x; }
+
+            var retorno = true;
+            if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10]) || cpf.match(expReg)) retorno = false;
+
+            return this.optional(element) || retorno;
+
+        }, "Informe um CPF válido"),
+
+            $.validator.addMethod(
+                "regex",
+                function (value, element, regexp) {
+                    if (regexp && regexp.constructor != RegExp) {
+                        regexp = new RegExp(regexp);
+                    }
+                    else if (regexp.global) regexp.lastIndex = 0;
+
+                    return this.optional(element) || regexp.test(value);
+                }
+            ),
+            $("#formEditarJogador").validate({
+                rules: {
+                    Nome: {
+                        required: true,
+                        maxlength: 50,
+                        minlength: 2
+                    },
+                    Email: {
+                        required: true,
+                        email: true,
+                        regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                    },
+                    Cpf: {
+                        required: true,
+                        Cpf: true
+                    }
+                },
+                // Mensagens referentes às especificações de regras acima
+                messages: {
+                    Nome: {
+                        required: "O campo Nome é obrigatório.",
+                        maxlength: "Permitido no máximo 50 caracteres",
+                        minlength: "Permitido no mínimo 2 caracteres"
+                    },
+                    Email: "Formato de e-mail inválido.",
+                    Cpf: {
+                        required: "O campo CPF é obrigatório",
+                        Cpf: 'CPF inválido'
+                    }
+                },
+
+                //errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback text-danger');
+                    element.closest('.form-group>div').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('alert alert-danger');
+                    $(element).removeClass('alert alert-success');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).addClass('alert alert-success');
+                    $(element).removeClass('alert alert-danger');
+                },
+
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            })
+    });
+}
