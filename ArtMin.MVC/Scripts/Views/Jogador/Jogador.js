@@ -9,14 +9,17 @@
 
 });
 
+function ConfirmarCadastro() {
+    $('#ConfimacaoCadastro').modal('show');
+};
+
+function ConfirmarEdicao() {
+    $('#ConfimacaoEdicao').modal('show');
+};
 
 function ConfirmacaoRemocao(id) {
     $('#JogadorId').val(id);
     $('#ConfirmacaoRemocao').modal('show');
-};
-
-function ConfirmarCadastro() {
-    $('#ConfimacaoCadastro').modal('show');
 };
 
 function SalvarCadastro() {
@@ -50,7 +53,37 @@ function SalvarCadastro() {
     });
 }
 
-function RemoverCadastro(){
+function SalvarEdicao() {
+
+    var form = $('#formEditarJogador');
+
+    if (!form.valid()) {
+        MensagemToastr(tipoToastr.alerta, "Preencha corretamente os campos obrigatórios");
+        $('#ConfimacaoEdicao').modal('toggle')
+        return false;
+    }
+
+    $.ajax({
+        url: caminhoWebSite + "Jogador/EditarJogador",
+        type: "POST",
+        data: form.serializeArray(),
+        dataType: "json",
+        success: function (data) {
+
+            if (data) {
+                MensagemToastr(tipoToastr.sucesso, "Cadastro alterado com sucesso", function () { location.href = caminhoWebSite + 'Jogador/Index' });
+            }
+            else {
+                MensagemToastr(tipoToastr.erro, "Erro ao alterar o cadastro");
+                return;
+            }
+
+            $('#ConfimacaoEdicao').modal('toggle');
+        }
+    });
+}
+
+function RemoverCadastro() {
 
     var jogadorId = $('#JogadorId').val();
     
@@ -70,6 +103,17 @@ function RemoverCadastro(){
     });
 
     $('#ConfirmacaoRemocao').modal('toggle');
+}
+
+function AbrirEdicao(idJogador) {
+    $.ajax({
+        url: caminhoWebSite + "Jogador/Edit",
+        type: 'GET',
+        data: { id: idJogador },
+        success: function () {
+            location.href = caminhoWebSite + 'Jogador/Edit' + "/" + idJogador
+        }
+    });
 }
 
 function ValidarFormularioCreate(){

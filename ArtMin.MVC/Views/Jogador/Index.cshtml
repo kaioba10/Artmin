@@ -40,7 +40,10 @@
             <td>@item.AtivoDescricao</td>
 
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.JogadorId }) |
+                <button type="button" class=" btn btn-link" onclick="AbrirEdicao(@item.JogadorId)">
+                    Editar
+                </button> |
+
                 @Html.ActionLink("Detalhes", "Details", new { id = item.JogadorId }) |
 
                 <button type="button" class=" btn btn-link" onclick="ConfirmacaoRemocao(@item.JogadorId)">
