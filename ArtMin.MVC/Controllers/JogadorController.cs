@@ -88,6 +88,14 @@ namespace ArtMin.MVC.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult EditarJogador(JogadorViewModel jogadorViewModel)
+        {
+            _jogadorAppService.Edit(jogadorViewModel);
+
+            return Json(jogadorViewModel, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: Jogador/Delete/5
         public ActionResult Delete(int id)
