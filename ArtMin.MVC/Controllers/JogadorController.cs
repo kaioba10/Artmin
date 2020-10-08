@@ -49,7 +49,14 @@ namespace ArtMin.MVC.Controllers
         {
             _jogadorAppService.Create(jogadorViewModel);
 
-            return Json(jogadorViewModel, JsonRequestBehavior.AllowGet);
+            if (jogadorViewModel.Resultado == true)
+            {
+                return Json(new { success = true, jogadorViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false, jogadorViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Jogador/Edit/5

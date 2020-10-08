@@ -28,7 +28,7 @@ function SalvarCadastro() {
 
     if (!form.valid()) {
         MensagemToastr(tipoToastr.alerta, "Preencha corretamente os campos obrigatórios");
-        $('#ConfimacaoCadastro').modal('toggle')
+        $('#ConfimacaoCadastro').modal('toggle');
         return false;
     }
 
@@ -39,16 +39,22 @@ function SalvarCadastro() {
         dataType: "json",
         success: function (data) {
 
-            if (data) {
+            if (data.success) {
                 MensagemToastr(tipoToastr.sucesso, "Jogador cadastrado com sucesso");
-            }
-            else {
-                MensagemToastr(tipoToastr.erro, "Erro ao cadastrar o jogador");
-                return;
+            } else {
+                MensagemToastr(tipoToastr.alerta, "CPF já cadastrado na base de dados");
+
+                $('#ConfimacaoCadastro').modal('toggle');
+                return false;
             }
 
             $('#formCadastroJogador')[0].reset();
             $('#ConfimacaoCadastro').modal('toggle');
+        },
+        error: function (error) {
+            MensagemToastr(tipoToastr.erro, "Erro ao cadastrar o jogador");
+            $('#ConfimacaoCadastro').modal('toggle');
+            return;
         }
     });
 }
@@ -86,7 +92,7 @@ function SalvarEdicao() {
 function RemoverCadastro() {
 
     var jogadorId = $('#JogadorId').val();
-    
+
     $.ajax({
         type: "POST",
         url: caminhoWebSite + "Jogador/RemoverJogador",
@@ -116,7 +122,7 @@ function AbrirEdicao(idJogador) {
     });
 }
 
-function ValidarFormularioCreate(){
+function ValidarFormularioCreate() {
     $(function () {
 
         jQuery.validator.addMethod("Cpf", function (value, element) {
@@ -154,59 +160,59 @@ function ValidarFormularioCreate(){
                         regexp = new RegExp(regexp);
                     }
                     else if (regexp.global) regexp.lastIndex = 0;
-                    
+
                     return this.optional(element) || regexp.test(value);
                 }
             ),
-        $("#formCadastroJogador").validate({
-            rules: {
-                Nome: {
-                    required: true,
-                    maxlength: 50,
-                    minlength: 2
+            $("#formCadastroJogador").validate({
+                rules: {
+                    Nome: {
+                        required: true,
+                        maxlength: 50,
+                        minlength: 2
+                    },
+                    Email: {
+                        required: true,
+                        email: true,
+                        regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                    },
+                    Cpf: {
+                        required: true,
+                        Cpf: true
+                    }
                 },
-                Email: {
-                    required: true,
-                    email: true,
-                    regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+                // Mensagens referentes às especificações de regras acima
+                messages: {
+                    Nome: {
+                        required: "O campo Nome é obrigatório.",
+                        maxlength: "Permitido no máximo 50 caracteres",
+                        minlength: "Permitido no mínimo 2 caracteres"
+                    },
+                    Email: "Formato de e-mail inválido.",
+                    Cpf: {
+                        required: "O campo CPF é obrigatório",
+                        Cpf: 'CPF inválido'
+                    }
                 },
-                Cpf: {
-                    required: true,
-                    Cpf: true
-                }
-            },
-            // Mensagens referentes às especificações de regras acima
-            messages: {
-                Nome: {
-                    required: "O campo Nome é obrigatório.",
-                    maxlength: "Permitido no máximo 50 caracteres",
-                    minlength: "Permitido no mínimo 2 caracteres"
-                },
-                Email: "Formato de e-mail inválido.",
-                Cpf: {
-                    required: "O campo CPF é obrigatório",
-                    Cpf: 'CPF inválido'
-                }
-            },
 
-            //errorElement: 'span',
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback text-danger');
-                element.closest('.form-group>div').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('alert alert-danger');
-                $(element).removeClass('alert alert-success');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).addClass('alert alert-success');
-                $(element).removeClass('alert alert-danger');
-            },
+                //errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback text-danger');
+                    element.closest('.form-group>div').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('alert alert-danger');
+                    $(element).removeClass('alert alert-success');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).addClass('alert alert-success');
+                    $(element).removeClass('alert alert-danger');
+                },
 
-            submitHandler: function (form) {
-                form.submit();
-            }
-        })
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            })
     });
 }
 
