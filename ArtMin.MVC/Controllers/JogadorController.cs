@@ -24,13 +24,6 @@ namespace ArtMin.MVC.Controllers
         public JsonResult GetAll() => 
             Json(_jogadorAppService.GetAll(), JsonRequestBehavior.AllowGet);
 
-        // GET: Jogador/Details/5
-        public ActionResult Details(int id)
-        {
-            var jogador = _jogadorAppService.GetById(id);
-            return View(jogador);
-        }
-
         // GET: Jogador/Create
         public ActionResult Create()
         {

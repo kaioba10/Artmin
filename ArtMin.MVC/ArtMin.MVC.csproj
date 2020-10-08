@@ -211,7 +211,6 @@
     <Content Include="Views\Jogador\Create.cshtml" />
     <Content Include="Views\Jogador\Edit.cshtml" />
     <Content Include="Views\Jogador\Delete.cshtml" />
-    <Content Include="Views\Jogador\Details.cshtml" />
     <Content Include="Views\Marcacao\Index.cshtml" />
     <Content Include="Views\Marcacao\Create.cshtml" />
     <Content Include="Views\Shared\Jogador\_Modais.cshtml" />
