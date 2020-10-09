@@ -28,6 +28,9 @@ namespace ArtMin.Infra.Data.EntityConfig
             Property(m => m.GolContra)
                 .IsOptional();
 
+            Property(m => m.Pontos)
+                .IsOptional();
+
             HasRequired(j => j.Jogador)
                 .WithMany()
                 .HasForeignKey(j => j.JogadorId);

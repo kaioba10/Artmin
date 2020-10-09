@@ -27,6 +27,8 @@ namespace ArtMin.Application.Services
 
         public void Create(MarcacaoViewModel marcacaoViewModel)
         {
+            CalculaPontos(marcacaoViewModel);
+
             var marcacao = Mapper.Map<MarcacaoViewModel, Marcacao>(marcacaoViewModel);
             _marcacaoRepository.Add(marcacao);
         }
@@ -50,6 +52,24 @@ namespace ArtMin.Application.Services
         {
             var marcacao = _marcacaoRepository.GetById(id);
             _marcacaoRepository.Remove(marcacao);
+        }
+
+        private void CalculaPontos(MarcacaoViewModel marcacaoViewModel)
+        {
+            var gols = marcacaoViewModel.Gol * 3;
+            var assistencias = marcacaoViewModel.Assistencia * 2;
+            var vitorias = marcacaoViewModel.Vitoria;
+            var defesaPenalti = marcacaoViewModel.PenaltiDefendido * 4;
+            var golContra = marcacaoViewModel.GolContra * -1.5;
+            var penaltiPerdido = marcacaoViewModel.PenaltiPerdido * -2;
+
+            marcacaoViewModel.Pontos = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido;
+
+            /*
+             Artilheiro do dia = +4
+             Assistente do dia = +3
+             Vitorioso do dia = +1,5
+             */
         }
     }
 }

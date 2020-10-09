@@ -24,6 +24,10 @@ namespace ArtMin.Application.ViewModels
 
         [DisplayName("Gols Contra")]
         public double GolContra { get; set; }
+
+        [DisplayName("Pontos")]
+        public double Pontos { get; set; }
+
         public int JogadorId { get; set; }
         public JogadorViewModel Jogador { get; set; }
     }
