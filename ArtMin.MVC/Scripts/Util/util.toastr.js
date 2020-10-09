@@ -35,7 +35,7 @@ function MensagemToastr(tipo, mensagem, onHidden) {
         "onclick": null,
         "showDuration": "3000",
         "hideDuration": "1000",
-        "timeOut": "1200",
+        "timeOut": "3000",
         "extendedTimeOut": "4000",
         "showEasing": "swing",
         "hideEasing": "linear",

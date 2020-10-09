@@ -24,13 +24,6 @@ namespace ArtMin.MVC.Controllers
         public JsonResult GetAll() => 
             Json(_jogadorAppService.GetAll(), JsonRequestBehavior.AllowGet);
 
-        // GET: Jogador/Details/5
-        public ActionResult Details(int id)
-        {
-            var jogador = _jogadorAppService.GetById(id);
-            return View(jogador);
-        }
-
         // GET: Jogador/Create
         public ActionResult Create()
         {
@@ -56,7 +49,14 @@ namespace ArtMin.MVC.Controllers
         {
             _jogadorAppService.Create(jogadorViewModel);
 
-            return Json(jogadorViewModel, JsonRequestBehavior.AllowGet);
+            if (jogadorViewModel.Resultado == true)
+            {
+                return Json(new { success = true, jogadorViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false, jogadorViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         // GET: Jogador/Edit/5

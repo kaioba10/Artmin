@@ -38,5 +38,7 @@ namespace ArtMin.Application.ViewModels
         public string AtivoDescricao { get { return Ativo ? "Sim" : "Não"; } }
 
         public bool ComparaCpf { get; set; }
+        public bool Resultado { get; set; }
+        public string Mensagem { get; set; }
     }
 }

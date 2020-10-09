@@ -6,28 +6,18 @@
 
 <h2>Jogadores Cadastrados</h2>
 
-<p>
+<p id="novoJogador">
     @Html.ActionLink("Novo Cadastro", "Create")
 </p>
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Goleiro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Admin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+        <th>@Html.DisplayNameFor(model => model.Email)</th>
+        <th>@Html.DisplayNameFor(model => model.Goleiro)</th>
+        <th>@Html.DisplayNameFor(model => model.Admin)</th>
+        <th>@Html.DisplayNameFor(model => model.Ativo)</th>
+        <th>Ações</th>
     </tr>
 
     @foreach (var item in Model)
@@ -40,15 +30,8 @@
             <td>@item.AtivoDescricao</td>
 
             <td>
-                <button type="button" class=" btn btn-link" onclick="AbrirEdicao(@item.JogadorId)">
-                    Editar
-                </button> |
-
-                @Html.ActionLink("Detalhes", "Details", new { id = item.JogadorId }) |
-
-                <button type="button" class=" btn btn-link" onclick="ConfirmacaoRemocao(@item.JogadorId)">
-                    Remover
-                </button>
+                <button type="button" class=" btn btn-link" onclick="AbrirEdicao(@item.JogadorId)">Editar</button> |
+                <button type="button" class=" btn btn-link" onclick="ConfirmacaoRemocao(@item.JogadorId)">Remover</button>
             </td>
         </tr>
     }

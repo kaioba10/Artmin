@@ -30,16 +30,17 @@ namespace ArtMin.Application.Services
             var cpfLimpo = jogador.Cpf.Replace(".", "").Replace("-", "");
             var validacaoCpf = _jogadorRepository.CompararCpf(cpfLimpo);
 
-            if (validacaoCpf)
+            if (!validacaoCpf)
             {
+                jogadorViewModel.Resultado = true;
 
+                jogador.Cpf = cpfLimpo;
+                _jogadorRepository.Add(jogador);
             }
-
-            //Implementar Validation Contract
-            //https://github.com/andrebaltieri/FluentValidator/wiki/Using-Validation-Contracts
-
-            jogador.Cpf = cpfLimpo;
-            _jogadorRepository.Add(jogador);            
+            else
+            {
+                jogadorViewModel.Resultado = false;
+            }
         }
 
         public JogadorViewModel GetById(int id)
@@ -53,8 +54,7 @@ namespace ArtMin.Application.Services
         public void Edit(JogadorViewModel jogadorViewModel)
         {
             var jogador = _jogadorRepository.GetById(jogadorViewModel.JogadorId);
-            var cpfLimpo = jogadorViewModel.Cpf.Replace(".", "").Replace("-", "");
-            jogador.Alterar(jogadorViewModel.Nome, jogadorViewModel.Email, cpfLimpo, jogadorViewModel.Goleiro, jogadorViewModel.Admin, jogadorViewModel.Ativo);
+            jogador.Alterar(jogadorViewModel.Nome, jogadorViewModel.Email,  jogadorViewModel.Goleiro, jogadorViewModel.Admin, jogadorViewModel.Ativo);
             _jogadorRepository.Update(jogador);
         }
 
