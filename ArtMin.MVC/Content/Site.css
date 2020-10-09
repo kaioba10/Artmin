@@ -22,3 +22,55 @@ select,
 textarea {
     max-width: 280px;
 }
+
+#voltarCreate {
+    width: 90px;
+    height: 35px;
+    padding: 15px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    border-color: #ccc;
+    padding-top: 6px;
+}
+
+    #voltarCreate:hover {
+        background-color: #d4d4d4;
+        color: #333;
+        border-color: #8c8c8c;
+    }
+
+        #voltarCreate a {
+            text-decoration: none;
+            text-align: center;
+            color: #333;
+        }
+
+#novoJogador {
+    width: 130px;
+    height: 40px;
+    padding: 15px;
+    background-color: #fff;
+    color: #333;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    border-color: #ccc;
+    padding-top: 9px;
+}
+
+    #novoJogador:hover {
+        background-color: #d4d4d4;
+        color: #333;
+        border-color: #8c8c8c;
+    }
+
+    #novoJogador a {
+        text-decoration: none;
+        text-align: center;
+        color: #333;
+    }
