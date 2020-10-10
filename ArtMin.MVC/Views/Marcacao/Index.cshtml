@@ -2,7 +2,6 @@
 @{
     ViewBag.Title = "Index";
 }
-@Scripts.Render("~/bundles/Marcacao/Index")
 
 <h2>Marcação de Pontos</h2>
 
@@ -21,7 +20,10 @@
             <th>Penaltis Perdidos</th>
             <th>Gols Contra</th>
             <th>Pontos</th>
+            <th>Ações</th>
         </tr>
     </thead>
 </table>
+
+@Scripts.Render("~/bundles/Marcacao")
 

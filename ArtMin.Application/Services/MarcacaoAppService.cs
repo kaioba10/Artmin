@@ -44,7 +44,7 @@ namespace ArtMin.Application.Services
         public void Edit(MarcacaoViewModel marcacaoViewModel)
         {
             var marcacao = _marcacaoRepository.GetById(marcacaoViewModel.MarcacaoId);
-            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido, marcacaoViewModel.PenaltiPerdido, marcacaoViewModel.GolContra);
+            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido, marcacaoViewModel.PenaltiPerdido, marcacaoViewModel.GolContra, marcacaoViewModel.Pontos);
             _marcacaoRepository.Update(marcacao);
         }
 
@@ -62,10 +62,12 @@ namespace ArtMin.Application.Services
             var defesaPenalti = marcacaoViewModel.PenaltiDefendido * 4;
             var golContra = marcacaoViewModel.GolContra * -1.5;
             var penaltiPerdido = marcacaoViewModel.PenaltiPerdido * -2;
+            var total = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido;
 
-            marcacaoViewModel.Pontos = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido;
+            marcacaoViewModel.Pontos = total;
 
             /*
+             Colocar como checkbox
              Artilheiro do dia = +4
              Assistente do dia = +3
              Vitorioso do dia = +1,5

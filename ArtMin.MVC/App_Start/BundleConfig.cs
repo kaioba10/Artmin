@@ -32,8 +32,8 @@ namespace ArtMin.MVC
 
             bundles.Add(new ScriptBundle("~/bundles/toastr").Include("~/Scripts/toastr.min.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/Marcacao/Index").Include("~/Scripts//Views/Marcacao/Index.js"));
-            bundles.Add(new ScriptBundle("~/bundles/Marcacao/Create").Include("~/Scripts/Views/Marcacao/Create.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/Marcacao/Index").Include("~/Scripts//Views/Marcacao/Index.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Marcacao").Include("~/Scripts/Views/Marcacao/Marcacao.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

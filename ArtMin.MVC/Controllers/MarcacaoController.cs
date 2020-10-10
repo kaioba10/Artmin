@@ -2,6 +2,7 @@
 using ArtMin.Application.ViewModels;
 using ArtMin.Infra.Data.Context;
 using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -55,22 +56,27 @@ namespace ArtMin.MVC.Controllers
         // GET: Marcacao/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var marcacaoViewModel = _marcacaoAppService.GetById(id);
+
+            return View(marcacaoViewModel);
         }
 
         // POST: Marcacao/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(MarcacaoViewModel marcacaoViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    _marcacaoAppService.Edit(marcacaoViewModel);
+                }
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                throw new Exception(e.Message);
             }
         }
 
