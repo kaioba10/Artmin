@@ -214,6 +214,7 @@
     <Content Include="Views\Marcacao\Create.cshtml" />
     <Content Include="Views\Shared\Jogador\_Modais.cshtml" />
     <Content Include="Views\Marcacao\Edit.cshtml" />
+    <Content Include="Views\Shared\Marcacao\_Modais.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

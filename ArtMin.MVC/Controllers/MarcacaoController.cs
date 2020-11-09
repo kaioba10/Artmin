@@ -53,6 +53,21 @@ namespace ArtMin.MVC.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult CadastrarMarcacao(MarcacaoViewModel marcacaoViewModel)
+        {
+            _marcacaoAppService.Create(marcacaoViewModel);
+
+            if (marcacaoViewModel.Resultado == true)
+            {
+                return Json(new { success = true, marcacaoViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(new { success = false, marcacaoViewModel.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         // GET: Marcacao/Edit/5
         public ActionResult Edit(int id)
         {

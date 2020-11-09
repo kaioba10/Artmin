@@ -5,14 +5,13 @@
 
 <h2>Nova Marcação</h2>
 
-@using (Html.BeginForm("Create", "Marcacao", FormMethod.Post))
+@using (Html.BeginForm("Create", "Marcacao", FormMethod.Post, new { id = "formCadastroMarcacao" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal" id="all">
 
-    <select id="JogadorId" name="JogadorId">
-    </select>
+    <select id="JogadorId" name="JogadorId"></select>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -95,10 +94,13 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Cadastrar" class="btn btn-default" />
+            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#ConfimacaoCadastro">
+                Cadastrar
+            </button>
             <input type="reset" value="Limpar" class="btn btn-default" />
         </div>
     </div>
+
 </div>
 
     <div>
@@ -108,3 +110,5 @@
 }
 
 @Scripts.Render("~/bundles/Marcacao")
+
+@Html.Partial("../Shared/Marcacao/_Modais")

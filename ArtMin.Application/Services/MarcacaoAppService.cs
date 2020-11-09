@@ -30,6 +30,8 @@ namespace ArtMin.Application.Services
             CalculaPontos(marcacaoViewModel);
 
             var marcacao = Mapper.Map<MarcacaoViewModel, Marcacao>(marcacaoViewModel);
+            marcacaoViewModel.Resultado = true;
+
             _marcacaoRepository.Add(marcacao);
         }
 

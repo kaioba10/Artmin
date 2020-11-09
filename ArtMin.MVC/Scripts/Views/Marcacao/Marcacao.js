@@ -55,3 +55,44 @@ function AbrirEdicao(idMarcacao) {
         }
     })
 };
+
+function ConfirmarCadastro() {
+    $('#ConfimacaoCadastro').modal('show');
+};
+
+function SalvarCadastro() {
+
+    var form = $('#formCadastroMarcacao');
+
+    if (!form.valid()) {
+        MensagemToastr(tipoToastr.alerta, "Preencha corretamente os campos obrigatórios");
+        $('#ConfimacaoCadastro').modal('toggle');
+        return false;
+    }
+
+    $.ajax({
+        url: caminhoWebSite + "Marcacao/CadastrarMarcacao",
+        type: "POST",
+        data: form.serializeArray(),
+        dataType: "json",
+        success: function (data) {
+
+            if (data.success) {
+                MensagemToastr(tipoToastr.sucesso, "Marcação cadastrada com sucesso");
+            } else {
+                MensagemToastr(tipoToastr.alerta, "Dados incorretos");
+
+                $('#ConfimacaoCadastro').modal('toggle');
+                return false;
+            }
+
+            $('#formCadastroMarcacao')[0].reset();
+            $('#ConfimacaoCadastro').modal('toggle');
+        },
+        error: function (error) {
+            MensagemToastr(tipoToastr.erro, "Erro ao cadastrar marcação");
+            $('#ConfimacaoCadastro').modal('toggle');
+            return false;
+        }
+    });
+}
