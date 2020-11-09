@@ -31,6 +31,15 @@ namespace ArtMin.Infra.Data.EntityConfig
             Property(m => m.Pontos)
                 .IsOptional();
 
+            Property(m => m.ArtilheiroDia)
+                .IsOptional();
+
+            Property(m => m.AssistenteDia)
+                .IsOptional();
+
+            Property(m => m.VitoriosoDia)
+                .IsOptional();
+
             HasRequired(j => j.Jogador)
                 .WithMany()
                 .HasForeignKey(j => j.JogadorId);

@@ -44,7 +44,9 @@ namespace ArtMin.Application.Services
         public void Edit(MarcacaoViewModel marcacaoViewModel)
         {
             var marcacao = _marcacaoRepository.GetById(marcacaoViewModel.MarcacaoId);
-            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido, marcacaoViewModel.PenaltiPerdido, marcacaoViewModel.GolContra, marcacaoViewModel.Pontos);
+            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido, 
+                             marcacaoViewModel.PenaltiPerdido, marcacaoViewModel.GolContra, marcacaoViewModel.Pontos, marcacaoViewModel.ArtilheiroDia,
+                             marcacaoViewModel.AssistenteDia, marcacaoViewModel.VitoriosoDia);
             _marcacaoRepository.Update(marcacao);
         }
 
@@ -62,7 +64,31 @@ namespace ArtMin.Application.Services
             var defesaPenalti = marcacaoViewModel.PenaltiDefendido * 4;
             var golContra = marcacaoViewModel.GolContra * -1.5;
             var penaltiPerdido = marcacaoViewModel.PenaltiPerdido * -2;
-            var total = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido;
+            var artilheiro = 0;
+            var assistente = 0;
+            double vitorioso = 0;
+
+            if (marcacaoViewModel.ArtilheiroDia || marcacaoViewModel.AssistenteDia || marcacaoViewModel.VitoriosoDia)
+            {
+                if (marcacaoViewModel.ArtilheiroDia)
+                {
+                    artilheiro = 4;
+                }
+
+                if (marcacaoViewModel.AssistenteDia)
+                {
+                    assistente = 3;
+                }
+
+                if (marcacaoViewModel.VitoriosoDia)
+                {
+                    vitorioso = 1.5;
+                }
+                
+            }
+
+
+            var total = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido + artilheiro + assistente + vitorioso;
 
             marcacaoViewModel.Pontos = total;
 

@@ -76,6 +76,14 @@
     <Compile Include="Migrations\202010092147172_update-column-Pontos.designer.cs">
       <DependentUpon>202010092147172_update-column-Pontos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011072029100_Adicionadas_Colunas.cs" />
+    <Compile Include="Migrations\202011072029100_Adicionadas_Colunas.designer.cs">
+      <DependentUpon>202011072029100_Adicionadas_Colunas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011072031337_Ajuste_Tipo_Colunas.cs" />
+    <Compile Include="Migrations\202011072031337_Ajuste_Tipo_Colunas.designer.cs">
+      <DependentUpon>202011072031337_Ajuste_Tipo_Colunas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\JogadorRepository.cs" />
@@ -100,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010092147172_update-column-Pontos.resx">
       <DependentUpon>202010092147172_update-column-Pontos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011072029100_Adicionadas_Colunas.resx">
+      <DependentUpon>202011072029100_Adicionadas_Colunas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011072031337_Ajuste_Tipo_Colunas.resx">
+      <DependentUpon>202011072031337_Ajuste_Tipo_Colunas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

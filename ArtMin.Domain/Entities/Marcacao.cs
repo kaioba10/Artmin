@@ -12,10 +12,14 @@ namespace ArtMin.Domain.Entities
         public double? PenaltiPerdido { get; set; }
         public double? GolContra { get; set; }
         public double? Pontos { get; set; }
+        public bool ArtilheiroDia { get; set; }
+        public bool AssistenteDia { get; set; }
+        public bool VitoriosoDia { get; set; }
         public int JogadorId { get; set; }
         public virtual Jogador Jogador { get; set; }
 
-        public void Alterar(double gol, double assistencia, double vitoria, double penaltiDefendido, double penaltiPerdido, double golContra, double pontos)
+        public void Alterar(double gol, double assistencia, double vitoria, double penaltiDefendido, double penaltiPerdido, double golContra, 
+                            double pontos, bool artilheiroDia, bool assistenteDia, bool vitoriosoDia)
         {
             Gol = Gol + gol;
             Assistencia = Assistencia + assistencia;
@@ -24,6 +28,9 @@ namespace ArtMin.Domain.Entities
             PenaltiPerdido = PenaltiPerdido + penaltiPerdido;
             GolContra = GolContra + golContra;
             Pontos = Pontos + pontos;
+            ArtilheiroDia = artilheiroDia;
+            AssistenteDia = assistenteDia;
+            VitoriosoDia = vitoriosoDia;
         }
     }
 }

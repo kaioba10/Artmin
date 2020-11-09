@@ -64,6 +64,36 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.ArtilheiroDia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.ArtilheiroDia)
+                @Html.ValidationMessageFor(model => model.ArtilheiroDia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.AssistenteDia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.AssistenteDia)
+                @Html.ValidationMessageFor(model => model.AssistenteDia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VitoriosoDia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.VitoriosoDia)
+                @Html.ValidationMessageFor(model => model.VitoriosoDia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Cadastrar" class="btn btn-default" />
             <input type="reset" value="Limpar" class="btn btn-default" />

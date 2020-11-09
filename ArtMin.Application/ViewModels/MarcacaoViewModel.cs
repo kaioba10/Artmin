@@ -28,6 +28,15 @@ namespace ArtMin.Application.ViewModels
         [DisplayName("Pontos")]
         public double Pontos { get; set; }
 
+        [DisplayName("Artilheiro do dia?")]
+        public bool ArtilheiroDia { get; set; }
+
+        [DisplayName("Assistente do dia?")]
+        public bool AssistenteDia { get; set; }
+
+        [DisplayName("Vitorioso do dia?")]
+        public bool VitoriosoDia { get; set; }
+
         public int JogadorId { get; set; }
         public JogadorViewModel Jogador { get; set; }
     }
