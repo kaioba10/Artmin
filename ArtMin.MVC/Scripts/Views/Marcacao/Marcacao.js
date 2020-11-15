@@ -63,9 +63,16 @@ function ConfirmarCadastro() {
 function SalvarCadastro() {
 
     var form = $('#formCadastroMarcacao');
+    var jogadorId = $("#JogadorId").val();
 
     if (!form.valid()) {
         MensagemToastr(tipoToastr.alerta, "Preencha corretamente os campos obrigatórios");
+        $('#ConfimacaoCadastro').modal('toggle');
+        return false;
+    }
+
+    if (jogadorId == -1) {
+        MensagemToastr(tipoToastr.alerta, "Selecione o Jogador");
         $('#ConfimacaoCadastro').modal('toggle');
         return false;
     }
