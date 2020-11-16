@@ -27,12 +27,19 @@ namespace ArtMin.Application.Services
 
         public void Create(MarcacaoViewModel marcacaoViewModel)
         {
-            CalculaPontos(marcacaoViewModel);
+            var marcacaoJogador = VerificaMarcacaoExistente(marcacaoViewModel);
+            var resultado = marcacaoViewModel.Resultado;
 
-            var marcacao = Mapper.Map<MarcacaoViewModel, Marcacao>(marcacaoViewModel);
-            marcacaoViewModel.Resultado = true;
-
-            _marcacaoRepository.Add(marcacao);
+            if (resultado)
+            {
+                Edit(marcacaoViewModel);
+            }
+            else
+            {
+                CalculaPontos(marcacaoViewModel);
+                var marcacao = Mapper.Map<MarcacaoViewModel, Marcacao>(marcacaoViewModel);
+                _marcacaoRepository.Add(marcacao);
+            }
         }
 
         public MarcacaoViewModel GetById(int id)
@@ -93,13 +100,19 @@ namespace ArtMin.Application.Services
             var total = gols + assistencias + vitorias + defesaPenalti + golContra + penaltiPerdido + artilheiro + assistente + vitorioso;
 
             marcacaoViewModel.Pontos = total;
+        }
 
-            /*
-             Colocar como checkbox
-             Artilheiro do dia = +4
-             Assistente do dia = +3
-             Vitorioso do dia = +1,5
-             */
+        private bool VerificaMarcacaoExistente(MarcacaoViewModel marcacaoViewModel)
+        {
+            var marcacao = _marcacaoRepository.VerificaMarcacaoExistente(marcacaoViewModel.JogadorId);
+
+            if (marcacao.MarcacaoId != 0)
+            {
+                marcacaoViewModel.MarcacaoId = marcacao.MarcacaoId;
+                marcacaoViewModel.Resultado = true;
+            }
+
+            return marcacaoViewModel.Resultado;
         }
     }
 }

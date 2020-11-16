@@ -6,5 +6,6 @@ namespace ArtMin.Domain.Interfaces.Repositories
     public interface IMarcacaoRepository : IRepositoryBase<Marcacao>
     {
         IEnumerable<Marcacao> BuscarPorId(int id);
+        Marcacao VerificaMarcacaoExistente(int id);
     }
 }

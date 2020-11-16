@@ -12,5 +12,10 @@ namespace ArtMin.Infra.Data.Repositories
         {
             return Db.marcacoes.Where(x => x.JogadorId == id).Include(x => x.Jogador);
         }
+
+        public Marcacao VerificaMarcacaoExistente(int id)
+        {
+            return Db.marcacoes.Where(x => x.JogadorId == id).Include(x => x.Jogador).FirstOrDefault();
+        }
     }
 }
