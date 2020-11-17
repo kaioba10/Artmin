@@ -19,15 +19,15 @@ namespace ArtMin.Domain.Entities
         public virtual Jogador Jogador { get; set; }
 
         public void Alterar(double gol, double assistencia, double vitoria, double penaltiDefendido, double penaltiPerdido, double golContra,
-                            double pontos, bool artilheiroDia, bool assistenteDia, bool vitoriosoDia)
+                            double? pontos, bool artilheiroDia, bool assistenteDia, bool vitoriosoDia)
         {
-            Gol = Gol + (gol * 3);
-            Assistencia = Assistencia + (assistencia * 2);
-            Vitoria = Vitoria + vitoria;
-            PenaltiDefendido = PenaltiDefendido + (penaltiDefendido * 4);
-            PenaltiPerdido = PenaltiPerdido + (penaltiPerdido * -2);
-            GolContra = GolContra + (golContra * -1);
-            Pontos = Pontos + pontos;
+            Gol = gol * 3;
+            Assistencia = assistencia * 2;
+            Vitoria = vitoria;
+            PenaltiDefendido = penaltiDefendido * 4;
+            PenaltiPerdido = penaltiPerdido * -2;
+            GolContra = golContra * -1;
+            //Pontos = Pontos + pontos;
             var artilheiro = 0;
             var assistente = 0;
             double vitorioso = 0;
@@ -48,8 +48,8 @@ namespace ArtMin.Domain.Entities
             AssistenteDia = assistenteDia;
             VitoriosoDia = vitoriosoDia;
 
-            var total = Gol + Assistencia + Vitoria + PenaltiDefendido + PenaltiPerdido + GolContra + artilheiro + assistente + vitorioso;
-            Pontos = total;
+            pontos = Gol + Assistencia + Vitoria + PenaltiDefendido + PenaltiPerdido + GolContra + artilheiro + assistente + vitorioso;
+            Pontos = Pontos + pontos;
         }
     }
 }
