@@ -116,5 +116,12 @@ namespace ArtMin.MVC.Controllers
                 return View();
             }
         }
+
+        [HttpPost]
+        public ActionResult RemoverMarcacao(int id)
+        {
+            _marcacaoAppService.Delete(id);
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }

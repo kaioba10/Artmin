@@ -14,7 +14,7 @@
     });
 
     $('#tableMarcacoes').DataTable({
-        "order": [[7, "desc"]],
+        "order": [[8, "desc"]],
         language: {
             url: '//cdn.datatables.net/plug-ins/1.10.21/i18n/Portuguese-Brasil.json'
         },
@@ -24,6 +24,7 @@
             "dataSrc": ""
         },
         "columns": [
+            { "data": 'MarcacaoId', visible: false },
             { "data": 'Jogador.Nome' },
             { "data": 'Gol' },
             { "data": 'Assistencia' },
@@ -37,7 +38,7 @@
                 "bSortable": false,
                 "mRender": function (o) {
                     return '<a href="Marcacao/Edit"' + o.MarcacaoId + '>' + 'Editar' + '</a>' + ' | ' +
-                           '<a href="Marcacao/Delete"' + o.MarcacaoId + '>' + 'Excluir' + '</a>';
+                        '<a type="button" class=" btn btn-link"  data-toggle="modal" data-target="#RemoverMarcacao"  onclick="ConfirmarRemocao(' + o.MarcacaoId + ')"> Remover </a>'
                 }
             }
         ]
@@ -59,6 +60,10 @@ function AbrirEdicao(idMarcacao) {
 function ConfirmarCadastro() {
     $('#ConfimacaoCadastro').modal('show');
 };
+
+function ConfirmarRemocao(id) {
+    $('#ConfimacaoRemocao').modal('show');
+}
 
 function SalvarCadastro() {
 
@@ -102,4 +107,26 @@ function SalvarCadastro() {
             return false;
         }
     });
+}
+
+function RemoverMarcacao(id) {
+
+    var marcacaoId = $("#MarcacaoId").val();
+
+    $.ajax({
+        type: "POST",
+        url: caminhoWebSite + "Marcacao/RemoverMarcacao",
+        data: JSON.stringify({ id: marcacaoId }),
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            MensagemToastr(tipoToastr.sucesso, "Marcação removida com sucesso", function () { location.reload(); });
+        },
+        error: function () {
+            MensagemToastr(tipoToastr.erro, "Erro ao remover Marcação");
+            return false;
+        }
+    });
+
+    $('#ConfirmacaoRemocao').modal('toggle');
 }
