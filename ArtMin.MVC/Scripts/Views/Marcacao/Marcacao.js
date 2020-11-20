@@ -63,6 +63,7 @@ function ConfirmarCadastro() {
 
 function ConfirmarRemocao(id) {
     $('#ConfimacaoRemocao').modal('show');
+    RemoverMarcacao(id);
 }
 
 function SalvarCadastro() {
@@ -111,7 +112,7 @@ function SalvarCadastro() {
 
 function RemoverMarcacao(id) {
 
-    var marcacaoId = $("#MarcacaoId").val();
+    var marcacaoId = id;
 
     $.ajax({
         type: "POST",
@@ -121,9 +122,11 @@ function RemoverMarcacao(id) {
         contentType: "application/json; charset=utf-8",
         success: function () {
             MensagemToastr(tipoToastr.sucesso, "Marcação removida com sucesso", function () { location.reload(); });
+            $('#ConfimacaoRemocao').modal('toggle');
         },
         error: function () {
             MensagemToastr(tipoToastr.erro, "Erro ao remover Marcação");
+            $('#ConfimacaoRemocao').modal('toggle');
             return false;
         }
     });
