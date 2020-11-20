@@ -1,4 +1,5 @@
 ﻿using ArtMin.Application.ViewModels;
+using ArtMin.Domain.Entities;
 using System.Collections.Generic;
 
 namespace ArtMin.Application.Interfaces
@@ -10,5 +11,6 @@ namespace ArtMin.Application.Interfaces
         JogadorViewModel GetById(int id);
         void Edit(JogadorViewModel jogadorViewModel);
         void Delete(int id);
+        Marcacao ObterMarcacaoPorJogadorId(int idJogador);
     }
 }

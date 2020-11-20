@@ -11,10 +11,12 @@ namespace ArtMin.Application.Services
     public class JogadorAppService : IJogadorAppService
     {
         private readonly IJogadorRepository _jogadorRepository;
+        private readonly IMarcacaoRepository _marcacaoRepository;
 
-        public JogadorAppService(IJogadorRepository jogadorRepository)
+        public JogadorAppService(IJogadorRepository jogadorRepository, IMarcacaoRepository marcacaoRepository)
         {
             _jogadorRepository = jogadorRepository;
+            _marcacaoRepository = marcacaoRepository;
         }
 
         public IEnumerable<JogadorViewModel> GetAll()
@@ -63,6 +65,12 @@ namespace ArtMin.Application.Services
             var jogador = _jogadorRepository.GetById(id);
             _jogadorRepository.Remove(jogador);
 
+        }
+
+        public Marcacao ObterMarcacaoPorJogadorId(int idJogador)
+        {
+            var marcacao = _marcacaoRepository.ObterMarcacaoPorJogadorId(idJogador);
+            return marcacao;
         }
     }
 }

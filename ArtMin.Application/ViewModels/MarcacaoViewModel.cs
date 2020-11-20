@@ -36,10 +36,8 @@ namespace ArtMin.Application.ViewModels
 
         [DisplayName("Vitorioso do dia?")]
         public bool VitoriosoDia { get; set; }
-
         public bool Resultado { get; set; }
         public string Mensagem { get; set; }
-
         public int JogadorId { get; set; }
         public JogadorViewModel Jogador { get; set; }
     }

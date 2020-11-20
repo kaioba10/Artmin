@@ -7,5 +7,6 @@ namespace ArtMin.Domain.Interfaces.Repositories
     {
         IEnumerable<Marcacao> BuscarPorId(int id);
         Marcacao VerificaMarcacaoExistente(int id);
+        Marcacao ObterMarcacaoPorJogadorId(int idJogador);
     }
 }

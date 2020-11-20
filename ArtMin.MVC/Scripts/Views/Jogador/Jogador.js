@@ -99,8 +99,14 @@ function RemoverCadastro() {
         data: JSON.stringify({ id: jogadorId }),
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        success: function () {
-            MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso", function () { location.reload(); });
+        success: function (data) {
+
+            if (data.success)
+                MensagemToastr(tipoToastr.sucesso, "Jogador removido com sucesso", function () { location.reload(); });
+            else {
+                MensagemToastr(tipoToastr.informacao, "O jogador possui marcação.", function () { location.reload(); });
+                return false;
+            }
         },
         error: function () {
             MensagemToastr(tipoToastr.erro, "Erro ao remover o jogador");

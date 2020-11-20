@@ -21,7 +21,7 @@ namespace ArtMin.MVC.Controllers
             return View(jogadorViewModel);
         }
 
-        public JsonResult GetAll() => 
+        public JsonResult GetAll() =>
             Json(_jogadorAppService.GetAll(), JsonRequestBehavior.AllowGet);
 
         // GET: Jogador/Create
@@ -113,11 +113,17 @@ namespace ArtMin.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoverJogador(int id)
+        public ActionResult RemoverJogador(int id, MarcacaoViewModel marcacaoView)
         {
-            _jogadorAppService.Delete(id);
+            var marcacaoJogador = _jogadorAppService.ObterMarcacaoPorJogadorId(id);
 
-            return Json(JsonRequestBehavior.AllowGet);
+            if (marcacaoJogador == null)
+            {
+                _jogadorAppService.Delete(id);
+                return Json(new { success = true, marcacaoView.Mensagem }, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json(new { success = false, marcacaoView.Mensagem }, JsonRequestBehavior.AllowGet);
         }
     }
 }
