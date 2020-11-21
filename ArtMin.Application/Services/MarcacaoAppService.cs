@@ -28,18 +28,21 @@ namespace ArtMin.Application.Services
         public void Create(MarcacaoViewModel marcacaoViewModel)
         {
             var marcacaoJogador = VerificaMarcacaoExistente(marcacaoViewModel);
-            var resultado = marcacaoViewModel.Resultado;
 
-            if (resultado)
+            if (marcacaoJogador != null)
             {
                 Edit(marcacaoViewModel);
+                marcacaoViewModel.Resultado = true;
             }
-            else
+            else if (marcacaoJogador == null)
             {
                 CalculaPontos(marcacaoViewModel);
+                marcacaoViewModel.Resultado = true;
                 var marcacao = Mapper.Map<MarcacaoViewModel, Marcacao>(marcacaoViewModel);
                 _marcacaoRepository.Add(marcacao);
             }
+            else
+                marcacaoViewModel.Resultado = false;
         }
 
         public MarcacaoViewModel GetById(int id)
@@ -53,7 +56,7 @@ namespace ArtMin.Application.Services
         public void Edit(MarcacaoViewModel marcacaoViewModel)
         {
             var marcacao = _marcacaoRepository.GetById(marcacaoViewModel.MarcacaoId);
-            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido, 
+            marcacao.Alterar(marcacaoViewModel.Gol, marcacaoViewModel.Assistencia, marcacaoViewModel.Vitoria, marcacaoViewModel.PenaltiDefendido,
                              marcacaoViewModel.PenaltiPerdido, marcacaoViewModel.GolContra, marcacaoViewModel.Pontos, marcacaoViewModel.ArtilheiroDia,
                              marcacaoViewModel.AssistenteDia, marcacaoViewModel.VitoriosoDia);
             _marcacaoRepository.Update(marcacao);
@@ -93,7 +96,7 @@ namespace ArtMin.Application.Services
                 {
                     vitorioso = 1.5;
                 }
-                
+
             }
 
 
@@ -102,17 +105,14 @@ namespace ArtMin.Application.Services
             marcacaoViewModel.Pontos = total;
         }
 
-        private bool VerificaMarcacaoExistente(MarcacaoViewModel marcacaoViewModel)
+        private Marcacao VerificaMarcacaoExistente(MarcacaoViewModel marcacaoViewModel)
         {
             var marcacao = _marcacaoRepository.VerificaMarcacaoExistente(marcacaoViewModel.JogadorId);
 
-            if (marcacao.MarcacaoId != 0)
-            {
+            if (marcacao != null)
                 marcacaoViewModel.MarcacaoId = marcacao.MarcacaoId;
-                marcacaoViewModel.Resultado = true;
-            }
 
-            return marcacaoViewModel.Resultado;
+            return marcacao;
         }
     }
 }

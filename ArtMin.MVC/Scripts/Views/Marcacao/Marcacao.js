@@ -24,7 +24,7 @@
             "dataSrc": ""
         },
         "columns": [
-            { "data": 'MarcacaoId', visible: false },
+            { "data": 'MarcacaoId', visible: false, id: 'marcacaoId' },
             { "data": 'Jogador.Nome' },
             { "data": 'Gol' },
             { "data": 'Assistencia' },
@@ -45,6 +45,8 @@
     });
 });
 
+//Variaveis de escopo global
+var marcacaoId = 0;
 
 function AbrirEdicao(idMarcacao) {
     $.ajax({
@@ -62,8 +64,8 @@ function ConfirmarCadastro() {
 };
 
 function ConfirmarRemocao(id) {
+    marcacaoId = id;
     $('#ConfimacaoRemocao').modal('show');
-    RemoverMarcacao(id);
 }
 
 function SalvarCadastro() {
@@ -110,9 +112,7 @@ function SalvarCadastro() {
     });
 }
 
-function RemoverMarcacao(id) {
-
-    var marcacaoId = id;
+function RemoverMarcacao() {
 
     $.ajax({
         type: "POST",
