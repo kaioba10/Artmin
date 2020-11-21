@@ -37,8 +37,8 @@
                 "mData": null,
                 "bSortable": false,
                 "mRender": function (o) {
-                    return '<a href="Marcacao/Edit"' + o.MarcacaoId + '>' + 'Editar' + '</a>' + ' | ' +
-                        '<a type="button" class=" btn btn-link"  data-toggle="modal" data-target="#RemoverMarcacao"  onclick="ConfirmarRemocao(' + o.MarcacaoId + ')"> Remover </a>'
+                    return '<a type="button" class=" btn btn-link btn-sm"  onclick="AbrirEdicao(' + o.MarcacaoId + ')"> Editar </a>' + ' | ' +
+                           '<a type="button" class=" btn btn-link btn-sm"  data-toggle="modal" data-target="#RemoverMarcacao"  onclick="ConfirmarRemocao(' + o.MarcacaoId + ')"> Remover </a>'
                 }
             }
         ]
@@ -49,6 +49,7 @@
 var marcacaoId = 0;
 
 function AbrirEdicao(idMarcacao) {
+
     $.ajax({
         url: caminhoWebSite + "Marcacao/Edit",
         type: 'GET',
