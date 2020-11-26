@@ -64,6 +64,10 @@ function ConfirmarCadastro() {
     $('#ConfimacaoCadastro').modal('show');
 };
 
+function ConfirmarEdicao() {
+    $('#ConfimacaoEdicao').modal('show');
+}
+
 function ConfirmarRemocao(id) {
     marcacaoId = id;
     $('#ConfimacaoRemocao').modal('show');
