@@ -37,14 +37,17 @@ namespace ArtMin.Infra.Data.Context
             }
         }
 
-        public DbSet<Jogador> jogadores { get; set; }
-        public DbSet<Marcacao> marcacoes { get; set; }
+        public DbSet<Jogador> Jogadores { get; set; }
+        public DbSet<Marcacao> Marcacoes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+
+            modelBuilder.Entity<Jogador>().ToTable("Jogadores");
+            modelBuilder.Entity<Marcacao>().ToTable("Marcacoes");
 
             modelBuilder.Properties()
                 .Where(p => p.Name == p.ReflectedType.Name + "Id")

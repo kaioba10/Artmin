@@ -8,6 +8,8 @@ namespace ArtMin.Infra.Data.EntityConfig
     {
         public MarcacaoConfiguration()
         {
+            ToTable("Marcacoes");
+
             HasKey(m => m.MarcacaoId);
 
             Property(m => m.Gol)

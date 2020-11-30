@@ -8,6 +8,8 @@ namespace ArtMin.Infra.Data.EntityConfig
     {
         public JogadorConfiguration()
         {
+            ToTable("Jogadores");
+
             HasKey(j => j.JogadorId);
 
             Property(j => j.Nome)
