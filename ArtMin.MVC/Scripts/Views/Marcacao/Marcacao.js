@@ -117,6 +117,17 @@ function SalvarCadastro() {
     });
 }
 
+function EditarMarcacao() {
+    var form = $('#formCadastroMarcacao');
+    var jogadorId = $("#JogadorId").val();
+
+    if (!form.valid()) {
+        MensagemToastr(tipoToastr.alerta, "");
+        $('#ConfimacaoEdicao').modal('toggle');
+        return false;
+    }
+}
+
 function RemoverMarcacao() {
 
     $.ajax({
